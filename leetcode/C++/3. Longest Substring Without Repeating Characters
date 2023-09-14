@@ -1,0 +1,16 @@
+class Solution {
+public:
+    int lengthOfLongestSubstring(string _str) {
+        map<char, int> Cheched;
+        int start =0, maxlen =0;
+        for (int i = 0; i < _str.length (); i++) {
+            if (Cheched.find (_str [i]) != Cheched.end ()) {
+                if (start < Cheched [_str [i]] + 1) {
+                    start = Cheched [_str [i]] + 1;}
+            }
+            Cheched [_str [i]] = i;
+            maxlen = max (maxlen, i - start + 1);
+        }
+        return maxlen;
+    }
+};

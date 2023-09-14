@@ -1,0 +1,20 @@
+class Solution {
+public:
+    string longestPalindrome(string s) {
+        int nSize = s.size ();
+        int ntable [nSize][nSize];
+        int start = 0, len = 1;
+        
+        for (int i = 0; i < nSize; ++i){
+            ntable [i][i] = 1;
+            for (int j = 0; j < i; ++j){
+                ntable [j][i] = (s[i] == s[j] && (i - j < 2 || ntable [j + 1][i - 1]));
+                if (ntable [j][i] && len < i - j + 1){
+                    len = i - j + 1;
+                    start = j;
+                }
+            }
+        }
+        return s.substr(start, len);
+    }
+};
